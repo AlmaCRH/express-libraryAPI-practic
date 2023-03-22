@@ -2,14 +2,7 @@ require('dotenv').config()
 const morgan = require('morgan')
 const express = require('express')
 
-const { Sequelize } = require('sequelize')
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
-    host: process.env.BD_HOST,
-    dialect: 'mysql',
-    port: process.env.DB_PORT,
-    logging: false
-})
-
+const sequelize = require('./api/db')
 
 const app = express()
 const router = require('./api/routes')
@@ -27,6 +20,7 @@ app.listen(process.env.PORT, async (err) => {
 
     try {
        await sequelize.authenticate()
+       await sequelize.sync({ alter: true })
     } catch (error){
         console.error('ERROR: Unable to connect to the database:', error)
     }
