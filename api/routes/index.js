@@ -1,11 +1,10 @@
 const router = require('express').Router()
+const bookRouter = require('./book.router')
+const userRouter = require('./user.router')
 
-router.get('/books', (req, res) => {
-    res.send('API okay')
-})
 
-router.post('/books', (req, res) => {
-    res.json(req.body)
-})
+router.use('/books', bookRouter)
+router.use('/users', userRouter)
+
 
 module.exports = router
