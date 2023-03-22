@@ -17,7 +17,7 @@ const User = sequelize.define('user', {
     }
 })
 
-/* async function model () {
+ async function model () {
     try {
         await User.sync({ alter: true })
     } catch (error) {
@@ -26,4 +26,4 @@ const User = sequelize.define('user', {
 }
 
 module.exports = User
- */
+ 
